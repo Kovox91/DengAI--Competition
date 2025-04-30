@@ -3,7 +3,7 @@ from functions.merging import merge_dataframes
 from functions.imputation import impute_with_mean
 from functions.remerge import remerge
 from functions.train import train_model
-from functions.test import test_model
+from functions.test import test_model, get_min_from_csv
 from functions.submission import create_submission
 from functions.encoding import removal_nonnumeric_columns
 from functions.split import split_data
@@ -22,28 +22,31 @@ def main():
     df = impute_with_mean(df, "total_cases")
 
     df = removal_nonnumeric_columns(df)
+    train_X, test_X, train_y, test_y,validation = split_data(df)
 
-    train, test, validation = split_data(df)
-
-    train_X = train.drop("total_cases", axis=1)
-    train_y = train["total_cases"]
-    test_X = test.drop("total_cases", axis=1)
-    test_y = test["total_cases"]
+    #train_X = train.drop("total_cases", axis=1)
+    #train_y = train["total_cases"]
+    #test_X = test.drop("total_cases", axis=1)
+    #test_y = test["total_cases"]
 
     model = train_model(train_X, train_y)
+    best_MAE = get_min_from_csv('logs/MAEs.csv')
 
-    MAE = test_model(model, test_X, test_y)
-    print(MAE)
+    current_MAE = test_model(model, test_X, test_y)
 
-    # CHECK IF MAE IS GOOD ENOUGH
-    X = remerge(train_X, test_X)
-    y = remerge(train_y, test_y)
+    if current_MAE >= best_MAE:
+        print('Model did not perform better than previous models. Aborting.')
 
-    final_model = train_model(X, y)
+    else:   
+        # CHECK IF MAE IS GOOD ENOUGH
+        X = remerge(train_X, test_X)
+        y = remerge(train_y, test_y)
 
-    predictions = make_prediction(validation, final_model)
+        final_model = train_model(X, y)
 
-    create_submission(predictions, validation, "../data/03_submissions/naive_model_30_04_1314.csv")
+        predictions = make_prediction(validation, final_model)
+
+        create_submission(predictions, validation, "../data/03_submissions/naive_model_30_04_1314.csv")
 
 
 if __name__ == "__main__":
