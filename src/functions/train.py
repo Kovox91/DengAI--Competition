@@ -1,21 +1,19 @@
-# fits a basic linear regression on training data
 import pandas as pd
-from sklearn.linear_model import LinearRegression
-import pdb
+import lightgbm as lgb
 
-def train_model(X_train:pd.DataFrame, y_train:pd.DataFrame):
+def train_model(X_train:pd.DataFrame, y_train:pd.DataFrame, learning_rate=.09, max_depth=5):
     """
     Trains a linear regression model on the training data.
     Args:
         X_train (pd.DataFrame): The training data features.
         y_train (pd.DataFrame): The training data target variable.
     Returns:
-        model (LinearRegression): The trained linear regression model.
+        model (RegLGBMClassifier): The trained linear regression model.
     """
-
     # initialize the model
-    model = LinearRegression(fit_intercept=False)
+    model = lgb.LGBMClassifier(learning_rate=learning_rate,max_depth=max_depth,random_state=42)
 
-    model.fit(X_train, y_train)
+    # fit
+    model.fit(X_train,y_train, verbose=20)
 
     return model
