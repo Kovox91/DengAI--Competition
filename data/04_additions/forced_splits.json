@@ -1,0 +1,11 @@
+{
+    "splits": [
+      {
+        "feature": "city",
+        "threshold": 1.5,
+        "left": {}, 
+        "right": {}
+      }
+    ]
+  }
+  

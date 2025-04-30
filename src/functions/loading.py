@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 
+
 def load_csv(file_name, sep=","):
     """
     Loads a CSV file and returns a pandas DataFrame.
@@ -14,5 +15,5 @@ def load_csv(file_name, sep=","):
     """
     if not os.path.exists(file_name):
         raise FileNotFoundError(f"File not found: {file_name}")
-    
+
     return pd.read_csv(file_name, sep=sep)

@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def remerge(train, test):
     """
     Concatenate train adn test datasets for final training.
@@ -10,4 +11,4 @@ def remerge(train, test):
     Returns:
         pd.DataFrame: A new concatenated DataFrame.
     """
-    return pd.concat([train,test])
+    return pd.concat([train, test])
