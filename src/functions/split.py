@@ -18,6 +18,7 @@ def split_data(df:pd.DataFrame):
 
     # 1. Separate validation set (rows with missing target)
     validation_df = df[df['total_cases'].isna()]
+    validation_df = validation_df.drop("total_cases", axis=1)
 
     # 2. Keep only rows with available target values
     labeled_df = df[df['total_cases'].notna()]

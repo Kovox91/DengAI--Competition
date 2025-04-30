@@ -1,6 +1,6 @@
 import pandas as pd
 
-def merge_dataframes(train_features:pd.DataFrame, train_labels:pd.DataFrame, test:pd.DataFrame on:str):
+def merge_dataframes(train_features:pd.DataFrame, train_labels:pd.DataFrame, test:pd.DataFrame, on:list):
     """
     Merge two DataFrames on common columns.
 

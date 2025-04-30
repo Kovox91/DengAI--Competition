@@ -13,7 +13,7 @@ def impute_with_mean(df, target_col):
     df_copy = df.copy()
 
     for col in df_copy.columns:
-        if col != target_column and df_copy[col].dtype in [float, int]:
+        if col != target_col and df_copy[col].dtype in [float, int]:
             mean_value = df_copy[col].mean()
             df_copy[col] = df_copy[col].fillna(mean_value)
     

@@ -10,4 +10,4 @@ def remerge(train, test):
     Returns:
         pd.DataFrame: A new concatenated DataFrame.
     """
-    return pd.concat(train,test)
+    return pd.concat([train,test])

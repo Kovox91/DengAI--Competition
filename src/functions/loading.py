@@ -12,7 +12,7 @@ def load_csv(file_name, sep=","):
     Returns:
         pd.DataFrame: Loaded data.
     """
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"File not found: {file_path}")
+    if not os.path.exists(file_name):
+        raise FileNotFoundError(f"File not found: {file_name}")
     
-    return pd.read_csv(file_path, sep=sep)
+    return pd.read_csv(file_name, sep=sep)

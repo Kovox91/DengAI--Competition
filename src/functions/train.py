@@ -1,6 +1,7 @@
 # fits a basic linear regression on training data
 import pandas as pd
 from sklearn.linear_model import LinearRegression
+import pdb
 
 def train_model(X_train:pd.DataFrame, y_train:pd.DataFrame):
     """
@@ -11,8 +12,9 @@ def train_model(X_train:pd.DataFrame, y_train:pd.DataFrame):
     Returns:
         model (LinearRegression): The trained linear regression model.
     """
+
     # initialize the model
-    model = LinearRegression()
+    model = LinearRegression(fit_intercept=False)
 
     model.fit(X_train, y_train)
 

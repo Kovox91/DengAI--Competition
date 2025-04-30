@@ -16,6 +16,13 @@ def create_submission(predictions: pd.DataFrame, validation_data: pd.DataFrame, 
         'total_cases': predictions
     })
 
+    
+    # submission_df["city"] = pd.Series(["sj" if x == 1 else "iq" for x in submission_df['city']])
+    submission_df['city'] = submission_df['city'].replace({1:'sj', 2:'iq'})
+
+    # transform total cases float to int
+    submission_df['total_cases'] = submission_df['total_cases'].astype(int)
+
     # Save the submission DataFrame to a CSV file
     submission_df.to_csv(submission_file_path, index=False)
     print(f"Submission file created at {submission_file_path}")
