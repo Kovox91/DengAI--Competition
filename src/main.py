@@ -10,6 +10,7 @@ from functions.split import split_data
 from functions.predict import make_prediction
 import pdb
 
+
 def main():
 
     # read data
@@ -17,23 +18,24 @@ def main():
     train_labels = load_csv("../data/01_raw/dengue_labels_train.csv")
     test_features = load_csv("../data/01_raw/dengue_features_test.csv")
 
-    df = merge_dataframes(train_features, train_labels, test_features, on=["city", "weekofyear", "year"])
+    df = merge_dataframes(
+        train_features, train_labels, test_features, on=["city", "weekofyear", "year"]
+    )
 
     df = impute_with_mean(df, "total_cases")
 
     df = removal_nonnumeric_columns(df)
-    train_X, test_X, train_y, test_y,validation = split_data(df)
+    train_X, test_X, train_y, test_y, validation = split_data(df)
 
     model = train_model(train_X, train_y)
-    best_MAE = get_min_from_csv('logs/MAEs.csv')
+    best_MAE = get_min_from_csv("logs/MAEs.csv")
 
     current_MAE = test_model(model, test_X, test_y)
 
     if current_MAE >= best_MAE:
-        print('Model did not perform better than previous models. Aborting.')
+        print("Model did not perform better than previous models. Aborting.")
 
-    else:   
-        # CHECK IF MAE IS GOOD ENOUGH
+    else:
         X = remerge(train_X, test_X)
         y = remerge(train_y, test_y)
 
@@ -41,7 +43,9 @@ def main():
 
         predictions = make_prediction(validation, final_model)
 
-        create_submission(predictions, validation, "../data/03_submissions/naive_model_30_04_1314.csv")
+        create_submission(
+            predictions, validation, "../data/03_submissions/naive_model_30_04_1314.csv"
+        )
 
 
 if __name__ == "__main__":
