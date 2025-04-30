@@ -23,7 +23,15 @@ def split_data(df:pd.DataFrame):
     # 2. Keep only rows with available target values
     labeled_df = df[df['total_cases'].notna()]
 
-    # 3. Split labeled data into train (80%) and test (20%)
-    train_df, test_df = train_test_split(labeled_df, test_size=0.2, random_state=42)
+    # 3. Split labeled data into X and y 
+    X=labeled_df.drop("total_cases", axis=1)
+    y=labeled_df["total_cases"]
 
-    return train_df, test_df,validation_df
+    # 4. Split labeled data into train (80%) and test (20%)
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y,  test_size=0.2, random_state=42)
+    
+
+    return X_train, X_test, y_train, y_test,validation_df
+
+
