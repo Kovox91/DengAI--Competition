@@ -22,13 +22,12 @@ def main():
     df = impute_with_mean(df, "total_cases")
 
     df = removal_nonnumeric_columns(df)
+    train_X, test_X, train_y, test_y,validation = split_data(df)
 
-    train, test, validation = split_data(df)
-
-    train_X = train.drop("total_cases", axis=1)
-    train_y = train["total_cases"]
-    test_X = test.drop("total_cases", axis=1)
-    test_y = test["total_cases"]
+    #train_X = train.drop("total_cases", axis=1)
+    #train_y = train["total_cases"]
+    #test_X = test.drop("total_cases", axis=1)
+    #test_y = test["total_cases"]
 
     model = train_model(train_X, train_y)
     best_MAE = get_min_from_csv('logs/MAEs.csv')
