@@ -33,6 +33,7 @@ def main():
     model = train_model(train_X, train_y)
 
     MAE = test_model(model, test_X, test_y)
+    print(MAE)
 
     # CHECK IF MAE IS GOOD ENOUGH
     X = remerge(train_X, test_X)
