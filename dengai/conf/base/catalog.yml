@@ -1,0 +1,19 @@
+# Here you can define all your datasets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+dengue_features_test:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/dengue_features_test.csv
+
+dengue_features_train:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/dengue_features_train.csv
+
+dengue_features_test:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/dengue_features_test.csv
+
+lightgbm_split_file:
+  type: json.JSONDataSet
+  filepath: data/01_raw/forced_splits.json
