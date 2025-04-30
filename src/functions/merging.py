@@ -1,6 +1,6 @@
 import pandas as pd
 
-def merge(df1, df2, on):
+def merge_dataframes(train_features:pd.DataFrame, train_labels:pd.DataFrame, test:pd.DataFrame on:str):
     """
     Merge two DataFrames on common columns.
 
@@ -11,4 +11,5 @@ def merge(df1, df2, on):
     Returns:
         pd.DataFrame: Merged DataFrame.
     """    
-    return pd.merge(df1, df2, on=on)
+    train = pd.merge(train_features, train_labels, on=on)
+    return pd.concat([train, test], axis=0)
