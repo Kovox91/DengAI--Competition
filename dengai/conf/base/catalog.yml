@@ -2,6 +2,8 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+# raw data
 dengue_features_test:
   type: pandas.CSVDataSet
   filepath: data/01_raw/dengue_features_test.csv
@@ -17,3 +19,58 @@ dengue_features_test:
 lightgbm_split_file:
   type: json.JSONDataSet
   filepath: data/01_raw/forced_splits.json
+
+# intermediate data
+merged_data:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/merged_data.parquet
+
+imputed_data:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/imputed_data.parquet
+
+numeric_data:
+  type: pandas.ParquetDataSet
+  filepath: data/03_primary/numeric_data.parquet
+
+split_train_X:
+  type: pandas.ParquetDataSet
+  filepath: data/04_model_input/train_X.parquet
+
+split_test_X:
+  type: pandas.ParquetDataSet
+  filepath: data/04_model_input/test_X.parquet
+
+split_train_y:
+  type: pandas.ParquetDataSet
+  filepath: data/04_model_input/train_y.parquet
+
+split_test_y:
+  type: pandas.ParquetDataSet
+  filepath: data/04_model_input/test_y.parquet
+
+validation_data:
+  type: pandas.ParquetDataSet
+  filepath: data/04_model_input/validation_data.parquet
+
+# models
+model:
+  type: pickle.PickleDataSet
+  filepath: data/05_model_output/model.pkl
+
+final_model:
+  type: pickle.PickleDataSet
+  filepath: data/05_model_output/final_model.pkl
+
+# comparative MAEs
+MAEs:
+  type: pandas.CSVDataSet
+  filepath: data/08_reporting/MAEs.csv
+
+# submissions
+submission:
+  type: pandas.CSVDataSet
+  filepath: data/06_reporting/submission.csv
+  versioned: true
+  save_args:
+    index: False
