@@ -12,13 +12,10 @@ dengue_features_train:
   type: pandas.CSVDataSet
   filepath: data/01_raw/dengue_features_train.csv
 
-dengue_features_test:
+dengue_labels_train:
   type: pandas.CSVDataSet
-  filepath: data/01_raw/dengue_features_test.csv
+  filepath: data/01_raw/dengue_labels_train.csv
 
-lightgbm_split_file:
-  type: json.JSONDataSet
-  filepath: data/01_raw/forced_splits.json
 
 # intermediate data
 merged_data:
@@ -33,19 +30,19 @@ numeric_data:
   type: pandas.ParquetDataSet
   filepath: data/03_primary/numeric_data.parquet
 
-split_train_X:
+X_train:
   type: pandas.ParquetDataSet
   filepath: data/04_model_input/train_X.parquet
 
-split_test_X:
+X_test:
   type: pandas.ParquetDataSet
   filepath: data/04_model_input/test_X.parquet
 
-split_train_y:
+y_train:
   type: pandas.ParquetDataSet
   filepath: data/04_model_input/train_y.parquet
 
-split_test_y:
+y_test:
   type: pandas.ParquetDataSet
   filepath: data/04_model_input/test_y.parquet
 
@@ -66,6 +63,11 @@ final_model:
 MAEs:
   type: pandas.CSVDataSet
   filepath: data/08_reporting/MAEs.csv
+
+# predictions
+prediction:
+  type: pandas.ParquetDataSet
+  filepath: data/07_model_output/prediction.parquet
 
 # submissions
 submission:
