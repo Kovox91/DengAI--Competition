@@ -23,3 +23,6 @@ def removal_nonnumeric_columns(df: pd.DataFrame) -> pd.DataFrame:
         numeric_df[city_column] = df[city_column]
 
     return numeric_df
+
+
+# this is some test
