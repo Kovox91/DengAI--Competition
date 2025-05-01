@@ -22,6 +22,14 @@ merged_data:
   type: pandas.ParquetDataset
   filepath: data/02_intermediate/merged_data.parquet
 
+cyclical_imputed:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/cyclical_imputed.parquet
+
+lag_features_added:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/lag_features_added.parquet
+
 imputed_data:
   type: pandas.ParquetDataset
   filepath: data/02_intermediate/imputed_data.parquet

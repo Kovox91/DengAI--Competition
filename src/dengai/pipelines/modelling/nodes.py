@@ -2,6 +2,7 @@ import pandas as pd
 from lightgbm import LGBMRegressor
 from datetime import datetime
 from sklearn.metrics import mean_absolute_error
+import csv
 
 
 def train_model(X_train: pd.DataFrame, y_train: pd.DataFrame, params: dict):
@@ -51,6 +52,7 @@ def test_model(model: object, X_test: pd.DataFrame, y_test: pd.DataFrame):
 
     test_predict = model.predict(X_test)
     MAE = mean_absolute_error(y_test, test_predict)
+    log_to_csv("data/06_model_output/mean_absolute_errors.csv", MAE)
     print(f"Mean absolute Error is {MAE}")
 
     return

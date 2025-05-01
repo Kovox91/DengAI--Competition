@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+from typing import List
 
 
 def merge_dataframes(
@@ -43,3 +45,43 @@ def impute_with_mean(merged_df):
             df_copy[col] = df_copy[col].fillna(mean_value)
 
     return df_copy
+
+
+def add_cyclical_features(df: pd.DataFrame) -> pd.DataFrame:
+    # Ensure datetime format
+    df["week_start_date"] = pd.to_datetime(df["week_start_date"])
+
+    # Extract date components
+    df["month"] = df["week_start_date"].dt.month
+    df["weekofyear"] = df["week_start_date"].dt.isocalendar().week
+    df["dayofweek"] = df["week_start_date"].dt.dayofweek
+
+    # Cyclical encoding
+    def encode_cyclical(col, period):
+        df[f"{col}_sin"] = np.sin(2 * np.pi * df[col] / period)
+        df[f"{col}_cos"] = np.cos(2 * np.pi * df[col] / period)
+
+    encode_cyclical("month", 12)
+    encode_cyclical("weekofyear", 52)
+    encode_cyclical("dayofweek", 7)
+
+    return df
+
+
+def add_lag_and_rolling_features(
+    df: pd.DataFrame, lag_features: List[str], lags: List[int], roll_windows: List[int]
+) -> pd.DataFrame:
+    # Sort before creating features
+    df = df.sort_values(["city", "week_start_date"])
+
+    for col in lag_features:
+        for lag in lags:
+            df[f"{col}_lag{lag}"] = df.groupby("city")[col].shift(lag)
+        for window in roll_windows:
+            df[f"{col}_rollmean{window}"] = df.groupby("city")[col].transform(
+                lambda x: x.rolling(window).mean()
+            )
+
+    # Sort back if needed
+    df = df.sort_values(by=["city", "week_start_date"], ascending=[False, True])
+    return df
