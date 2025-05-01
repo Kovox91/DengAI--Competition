@@ -25,6 +25,7 @@ def removal_nonnumeric_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
+import pdb
 
 
 def split_data(df: pd.DataFrame):
@@ -37,6 +38,7 @@ def split_data(df: pd.DataFrame):
 
     # 1. Separate validation set (rows with missing target)
     validation_data = df[df["total_cases"].isna()]
+
     validation_data = validation_data.drop("total_cases", axis=1)
 
     # 2. Keep only rows with available target values
