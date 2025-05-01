@@ -17,12 +17,13 @@ def train_model(X_train: pd.DataFrame, y_train: pd.DataFrame, params: dict):
 
     # initialize the model
     model = LGBMRegressor(
-        learning_rate=params["learning_rate"],
-        n_estimators=params["n_estimators"],
-        num_leaves=params["num_leaves"],
-        random_state=42,
-        max_depth=params["max_depth"],
-        verbose=-1,
+        # learning_rate=params["learning_rate"],
+        # n_estimators=params["n_estimators"],
+        # num_leaves=params["num_leaves"],
+        # random_state=42,
+        # max_depth=params["max_depth"],
+        # verbose=-1,
+        n_jobs=-1,
         forcedsplits_filename=params["split_file"],
     )
 
