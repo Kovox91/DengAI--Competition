@@ -52,7 +52,6 @@ def test_model(model: object, X_test: pd.DataFrame, y_test: pd.DataFrame):
     test_predict = model.predict(X_test)
     MAE = mean_absolute_error(y_test, test_predict)
     print(f"Mean absolute Error is {MAE}")
-    log_to_csv("logs/MAEs.csv", MAE)
 
     return
 
@@ -68,41 +67,3 @@ def remerge(train, test):
         pd.DataFrame: A new concatenated DataFrame.
     """
     return pd.concat([train, test])
-
-
-def make_predictions(model: object, validation: pd.DataFrame):
-    """Predicts the target variable with the retrained model
-
-    Args:
-        model (object): A trained regression model
-        validation (pd.DataFrame): A prepared validation DataFrame
-
-    Returns:
-        _type_: _description_
-    """
-    return model.predict(validation)
-
-
-def create_submission(predictions: pd.DataFrame, validation_data: pd.DataFrame):
-    """
-    Creates a submission file for the competition.
-    Args:
-        predictions (pd.DataFrame): The predictions made by the model.
-        validation_data (pd.DataFrame): The validation data used to make the predictions.
-    """
-    # Create a submission DataFrame
-    submission_df = pd.DataFrame(
-        {
-            "city": validation_data["city"],
-            "year": validation_data["year"],
-            "weekofyear": validation_data["weekofyear"],
-            "total_cases": predictions,
-        }
-    )
-
-    submission_df["city"] = submission_df["city"].replace({1: "sj", 2: "iq"})
-
-    # transform total cases float to int
-    submission_df["total_cases"] = submission_df["total_cases"].astype(int)
-
-    return submission_df

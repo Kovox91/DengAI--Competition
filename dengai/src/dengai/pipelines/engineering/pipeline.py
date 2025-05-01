@@ -12,8 +12,13 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=removal_nonnumeric_columns,
-                input="imputed_data",
-                output="numeric_data",
-            )
+                inputs="imputed_data",
+                outputs="numeric_data",
+            ),
+            node(
+                func=split_data,
+                inputs="numeric_data",
+                outputs=["X_train", "X_test", "y_train", "y_test", "validation_data"],
+            ),
         ]
     )

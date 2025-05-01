@@ -10,20 +10,18 @@ from .nodes import *
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline(
         [
-            node(func=train_model, input=["X_train", "y_train"], output="model"),
-            node(func=test_model, input=["model", "X_test", "y_test"], output=None),
-            node(func=remerge, input=["X_train", "X_test"], output="X"),
-            node(func=remerge, input=["y_train", "y_test"], output="y"),
-            node(func=train_model, input=["X, y"], output="final_model"),
             node(
-                func=make_predictions,
-                input=["final_model", "validation_data"],
-                output="prediction",
+                func=train_model,
+                inputs=["X_train", "y_train", "params:train_model"],
+                outputs="model",
             ),
+            node(func=test_model, inputs=["model", "X_test", "y_test"], outputs=None),
+            node(func=remerge, inputs=["X_train", "X_test"], outputs="X"),
+            node(func=remerge, inputs=["y_train", "y_test"], outputs="y"),
             node(
-                func=create_submission,
-                input=["prediction", "validation_data"],
-                output="submission",
+                func=train_model,
+                inputs=["X", "y", "params:train_model"],
+                outputs="final_model",
             ),
         ]
     )

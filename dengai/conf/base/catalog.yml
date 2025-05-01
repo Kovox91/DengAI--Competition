@@ -5,73 +5,73 @@
 
 # raw data
 dengue_features_test:
-  type: pandas.CSVDataSet
+  type: pandas.CSVDataset
   filepath: data/01_raw/dengue_features_test.csv
 
 dengue_features_train:
-  type: pandas.CSVDataSet
+  type: pandas.CSVDataset
   filepath: data/01_raw/dengue_features_train.csv
 
 dengue_labels_train:
-  type: pandas.CSVDataSet
+  type: pandas.CSVDataset
   filepath: data/01_raw/dengue_labels_train.csv
 
 
 # intermediate data
 merged_data:
-  type: pandas.ParquetDataSet
+  type: pandas.ParquetDataset
   filepath: data/02_intermediate/merged_data.parquet
 
 imputed_data:
-  type: pandas.ParquetDataSet
+  type: pandas.ParquetDataset
   filepath: data/02_intermediate/imputed_data.parquet
 
 numeric_data:
-  type: pandas.ParquetDataSet
+  type: pandas.ParquetDataset
   filepath: data/03_primary/numeric_data.parquet
 
 X_train:
-  type: pandas.ParquetDataSet
-  filepath: data/04_model_input/train_X.parquet
+  type: pandas.ParquetDataset
+  filepath: data/04_model_input/X_train.parquet
 
 X_test:
-  type: pandas.ParquetDataSet
-  filepath: data/04_model_input/test_X.parquet
+  type: pandas.ParquetDataset
+  filepath: data/04_model_input/X_test.parquet
 
 y_train:
-  type: pandas.ParquetDataSet
-  filepath: data/04_model_input/train_y.parquet
+  type: pandas.CSVDataset
+  filepath: data/04_model_input/y_train.csv
 
 y_test:
-  type: pandas.ParquetDataSet
-  filepath: data/04_model_input/test_y.parquet
+  type: pandas.CSVDataset
+  filepath: data/04_model_input/y_test.csv
 
 validation_data:
-  type: pandas.ParquetDataSet
+  type: pandas.ParquetDataset
   filepath: data/04_model_input/validation_data.parquet
 
 # models
 model:
-  type: pickle.PickleDataSet
+  type: pickle.PickleDataset
   filepath: data/05_model_output/model.pkl
 
 final_model:
-  type: pickle.PickleDataSet
+  type: pickle.PickleDataset
   filepath: data/05_model_output/final_model.pkl
 
 # comparative MAEs
 MAEs:
-  type: pandas.CSVDataSet
+  type: pandas.CSVDataset
   filepath: data/08_reporting/MAEs.csv
 
 # predictions
 prediction:
-  type: pandas.ParquetDataSet
-  filepath: data/07_model_output/prediction.parquet
+  type: pandas.CSVDataset
+  filepath: data/07_model_output/prediction.csv
 
 # submissions
 submission:
-  type: pandas.CSVDataSet
+  type: pandas.CSVDataset
   filepath: data/06_reporting/submission.csv
   versioned: true
   save_args:
