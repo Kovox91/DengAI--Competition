@@ -1,6 +1,7 @@
 import pandas as pd
 from lightgbm import LGBMRegressor
 
+
 def train_model(
     X_train: pd.DataFrame,
     y_train: pd.DataFrame,
@@ -26,7 +27,7 @@ def train_model(
         num_leaves=num_leaves,
         random_state=42,
         max_depth=max_depth,
-        verbose = -1,
+        verbose=-1,
         forcedsplits_filename=split_file,
     )
 
