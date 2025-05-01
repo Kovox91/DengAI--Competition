@@ -4,6 +4,7 @@ from functions.imputation import (
     impute_with_mean,
     add_cyclical_features,
     add_lag_and_rolling_features,
+    create_favorable_temp_cols,
 )
 from functions.remerge import remerge
 from functions.train import train_model
@@ -31,6 +32,7 @@ def main():
     df = add_cyclical_features(df)
 
     df = add_lag_and_rolling_features(df)
+    df = create_favorable_temp_cols(df)
     df = impute_with_mean(df, "total_cases")
 
     df = removal_nonnumeric_columns(df)

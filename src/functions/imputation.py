@@ -89,3 +89,38 @@ def impute_with_mean(df, target_col):
             df_copy[col] = df_copy[col].fillna(mean_value)
 
     return df_copy
+
+
+def create_favorable_temp_cols(df: pd.DataFrame):
+    df["good_larva_4"] = (
+        (df["station_avg_temp_c_lag4"] >= 15) & (df["station_avg_temp_c_lag4"] <= 35)
+    ).astype(int)
+    df["good_larva_3"] = (
+        (df["station_avg_temp_c_lag3"] >= 15) & (df["station_avg_temp_c_lag3"] <= 35)
+    ).astype(int)
+
+    df["good_larva_4-2"] = (
+        (df["reanalysis_air_temp_k_lag4"] >= 15)
+        & (df["reanalysis_air_temp_k_lag4"] <= 35)
+    ).astype(int)
+    df["good_larva_3-2"] = (
+        (df["reanalysis_air_temp_k_lag3"] >= 15)
+        & (df["reanalysis_air_temp_k_lag3"] <= 35)
+    ).astype(int)
+
+    df["good_adult_2"] = (
+        (df["station_avg_temp_c_lag2"] >= 10) & (df["station_avg_temp_c_lag2"] <= 39)
+    ).astype(int)
+    df["good_adult_1"] = (
+        (df["station_avg_temp_c_lag1"] >= 10) & (df["station_avg_temp_c_lag1"] <= 39)
+    ).astype(int)
+
+    df["good_adult_2"] = (
+        (df["reanalysis_air_temp_k_lag2"] >= 10)
+        & (df["reanalysis_air_temp_k_lag2"] <= 39)
+    ).astype(int)
+    df["good_adult_1"] = (
+        (df["reanalysis_air_temp_k_lag1"] >= 10)
+        & (df["reanalysis_air_temp_k_lag1"] <= 39)
+    ).astype(int)
+    return df
