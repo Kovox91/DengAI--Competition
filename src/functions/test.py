@@ -34,6 +34,6 @@ def test_model(model: object, X_test: pd.DataFrame, y_test: pd.DataFrame):
     test_predict = model.predict(X_test)
     MAE = mean_absolute_error(y_test, test_predict)
     print(f"Mean absolute Error is {MAE}")
-    log_to_csv("logs/MAEs.csv", MAE)
+    # log_to_csv("logs/MAEs.csv", MAE)
 
     return MAE

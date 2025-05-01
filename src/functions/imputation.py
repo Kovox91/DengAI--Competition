@@ -47,7 +47,7 @@ def add_lag_and_rolling_features(
         "ndvi_ne",
         "ndvi_nw",
     ],
-    lags: list[int] = [1, 2, 3],
+    lags: list[int] = [1, 2, 3, 4],
     roll_windows: list[int] = [3, 5],
 ) -> pd.DataFrame:
     # Sort before creating features
