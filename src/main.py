@@ -35,13 +35,16 @@ def main():
 
     df = removal_nonnumeric_columns(df)
     train_X, test_X, train_y, test_y, validation = split_data(df)
+    train_X, test_X, train_y, test_y, validation = split_data(df)
 
     model = train_model(train_X, train_y)
+    best_MAE = get_min_from_csv("logs/MAEs.csv")
     best_MAE = get_min_from_csv("logs/MAEs.csv")
 
     current_MAE = test_model(model, test_X, test_y)
 
     if current_MAE >= best_MAE:
+        print("Model did not perform better than previous models. Aborting.")
         print("Model did not perform better than previous models. Aborting.")
 
     else:
@@ -53,6 +56,9 @@ def main():
 
         predictions = make_prediction(validation, final_model)
 
+        create_submission(
+            predictions, validation, "../data/03_submissions/naive_model_30_04_1314.csv"
+        )
         create_submission(
             predictions, validation, "../data/03_submissions/naive_model_30_04_1314.csv"
         )
