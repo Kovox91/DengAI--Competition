@@ -28,51 +28,51 @@ imputed_data:
 
 numeric_data:
   type: pandas.ParquetDataset
-  filepath: data/03_primary/numeric_data.parquet
+  filepath: data/02_intermediate/numeric_data.parquet
 
 X_train:
   type: pandas.ParquetDataset
-  filepath: data/04_model_input/X_train.parquet
+  filepath: data/03_model_input/X_train.parquet
 
 X_test:
   type: pandas.ParquetDataset
-  filepath: data/04_model_input/X_test.parquet
+  filepath: data/03_model_input/X_test.parquet
 
 y_train:
   type: pandas.CSVDataset
-  filepath: data/04_model_input/y_train.csv
+  filepath: data/03_model_input/y_train.csv
 
 y_test:
   type: pandas.CSVDataset
-  filepath: data/04_model_input/y_test.csv
+  filepath: data/03_model_input/y_test.csv
 
 validation_data:
   type: pandas.ParquetDataset
-  filepath: data/04_model_input/validation_data.parquet
+  filepath: data/03_model_input/validation_data.parquet
 
 # models
 model:
   type: pickle.PickleDataset
-  filepath: data/05_model_output/model.pkl
+  filepath: data/05_models/model.pkl
 
 final_model:
   type: pickle.PickleDataset
-  filepath: data/05_model_output/final_model.pkl
+  filepath: data/05_models/final_model.pkl
 
 # comparative MAEs
 MAEs:
   type: pandas.CSVDataset
-  filepath: data/08_reporting/MAEs.csv
+  filepath: data/07_reporting/MAEs.csv
 
 # predictions
 prediction:
   type: pandas.CSVDataset
-  filepath: data/07_model_output/prediction.csv
+  filepath: data/06_model_output/prediction.csv
 
 # submissions
 submission:
   type: pandas.CSVDataset
-  filepath: data/06_reporting/submission.csv
+  filepath: data/07_reporting/submission
   versioned: true
   save_args:
     index: False
