@@ -38,7 +38,7 @@ def add_cyclical_features(df: pd.DataFrame) -> pd.DataFrame:
     # Cyclical encoding
     def encode_cyclical(col, period):
         df[f"{col}_sin"] = np.sin(2 * np.pi * df[col] / period)
-        # df[f"{col}_cos"] = np.cos(2 * np.pi * df[col] / period)
+        df[f"{col}_cos"] = np.cos(2 * np.pi * df[col] / period)
 
     encode_cyclical("month", max(df["month"]))
     encode_cyclical("weekofyear", max(df["weekofyear"]))

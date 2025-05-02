@@ -14,10 +14,10 @@ def create_pipeline(**kwargs) -> Pipeline:
                 ],
                 outputs="merged_data",
             ),
-            node(
-                func=impute_interpolation,
-                inputs="merged_data",
-                outputs="imputed_data_interpol",
-            ),
+            # node(
+            #     func=impute_interpolation,
+            #     inputs="merged_data",
+            #     outputs="imputed_data_interpol",
+            # ),
         ]
     )
