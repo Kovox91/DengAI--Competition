@@ -30,6 +30,10 @@ lag_features_added:
   type: pandas.ParquetDataset
   filepath: data/02_intermediate/lag_features_added.parquet
 
+fav_temps_added:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/fav_temps_added.parquet
+
 imputed_data_mean:
   type: pandas.ParquetDataset
   filepath: data/02_intermediate/imputed_data_mean.parquet

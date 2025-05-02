@@ -21,8 +21,13 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="lag_features_added",
             ),
             node(
+                func=add_favourable_conditions,
+                inputs=["lag_features_added", "params:temperature_threshholds"],
+                outputs="fav_temps_added",
+            ),
+            node(
                 func=removal_nonnumeric_columns,
-                inputs="imputed_data_mean",
+                inputs="fav_temps_added",
                 outputs="numeric_data",
             ),
             node(
