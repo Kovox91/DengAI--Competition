@@ -38,7 +38,7 @@ def add_cyclical_features(df: pd.DataFrame) -> pd.DataFrame:
     # Cyclical encoding
     def encode_cyclical(col, period):
         df[f"{col}_sin"] = np.sin(2 * np.pi * df[col] / period)
-        df[f"{col}_cos"] = np.cos(2 * np.pi * df[col] / period)
+        # df[f"{col}_cos"] = np.cos(2 * np.pi * df[col] / period)
 
     encode_cyclical("month", max(df["month"]))
     encode_cyclical("weekofyear", max(df["weekofyear"]))
@@ -110,3 +110,25 @@ def split_data(df: pd.DataFrame):
     )
 
     return X_train, X_test, y_train, y_test, validation_data
+
+
+def impute_with_mean(merged_df):
+    """
+    Replace missing values in all columns except the target column
+    with the mean of their respective columns.
+
+    Args:
+        df (pd.DataFrame): The input DataFrame with missing values.
+        target_column (str): The name of the column to exclude from imputation.
+
+    Returns:
+        pd.DataFrame: A new DataFrame with imputed values.
+    """
+    df_copy = merged_df.copy()
+
+    for col in df_copy.columns:
+        if col != "total_cases" and df_copy[col].dtype in [float, int]:
+            mean_value = df_copy[col].mean()
+            df_copy[col] = df_copy[col].fillna(mean_value)
+
+    return df_copy

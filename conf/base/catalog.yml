@@ -30,9 +30,13 @@ lag_features_added:
   type: pandas.ParquetDataset
   filepath: data/02_intermediate/lag_features_added.parquet
 
-imputed_data:
+imputed_data_mean:
   type: pandas.ParquetDataset
-  filepath: data/02_intermediate/imputed_data.parquet
+  filepath: data/02_intermediate/imputed_data_mean.parquet
+
+imputed_data_interpol:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/imputed_data_interpol.parquet
 
 numeric_data:
   type: pandas.ParquetDataset

@@ -7,7 +7,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=add_cyclical_features,
-                inputs="imputed_data",
+                inputs="merged_data",
                 outputs="cyclical_imputed",
             ),
             node(
@@ -21,13 +21,13 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="lag_features_added",
             ),
             node(
-                func=add_favourable_conditions,
-                inputs=["lag_features_added", "params:temperature_threshholds"],
-                outputs="fav_conds_added",
+                func=impute_with_mean,
+                inputs="lag_features_added",
+                outputs="imputed_data_mean",
             ),
             node(
                 func=removal_nonnumeric_columns,
-                inputs="fav_conds_added",
+                inputs="imputed_data_mean",
                 outputs="numeric_data",
             ),
             node(
