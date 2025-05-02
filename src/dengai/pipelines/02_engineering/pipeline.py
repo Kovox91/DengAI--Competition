@@ -1,4 +1,4 @@
-from kedro.pipeline import node, Pipeline, pipeline  # noqa
+from kedro.pipeline import node, Pipeline, pipeline
 from .nodes import *
 
 
