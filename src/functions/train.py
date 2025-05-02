@@ -1,12 +1,19 @@
 import pandas as pd
 from lightgbm import LGBMRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sktime.regression.interval_based import TimeSeriesForestRegressor
+from sklearn.svm import SVR
+import xgboost as xgb
+import pdb
 
 
 def train_model(
     X_train: pd.DataFrame,
     y_train: pd.DataFrame,
     learning_rate=0.05,
-    num_leaves=64,
+    num_leaves=50,
     max_depth=-1,
     n_estimators=1000,
     split_file="../../data/04_additions/forced_splits.json",
@@ -20,18 +27,10 @@ def train_model(
         model (LGBMRegressor): The trained linear regression model.
     """
 
-    # initialize the model
-    model = LGBMRegressor(
-        learning_rate=learning_rate,
-        n_estimators=n_estimators,
-        num_leaves=num_leaves,
-        random_state=42,
-        max_depth=max_depth,
-        verbose=-1,
-        forcedsplits_filename=split_file,
+    model = xgb.XGBRegressor(
+        objective="reg:squarederror", n_estimators=100, learning_rate=0.1
     )
 
-    # fit
     model.fit(X_train, y_train)
 
     return model
