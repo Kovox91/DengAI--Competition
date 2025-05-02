@@ -14,7 +14,7 @@ def train_model(X_train: pd.DataFrame, y_train: pd.DataFrame, params: dict):
         X_train (pd.DataFrame): The training data features.
         y_train (pd.DataFrame): The training data target variable.
     Returns:
-        model (LGBMRegressor): The trained linear regression model.
+        model (XGBRegressor): The trained XGBoost regression model.
     """
 
     # initialize the model
@@ -56,7 +56,7 @@ def test_model(model: object, X_test: pd.DataFrame, y_test: pd.DataFrame):
 
 def remerge(train, test):
     """
-    Concatenate train adn test datasets for final training.
+    Concatenate train and test datasets for final training.
 
     Args:
         train, test (pd.DataFrame): The input DataFrames.
