@@ -1,5 +1,5 @@
 from kedro.pipeline import node, Pipeline, pipeline  # noqa
-from .nodes import *
+from .nodes import merge_dataframes
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -13,11 +13,6 @@ def create_pipeline(**kwargs) -> Pipeline:
                     "dengue_features_test",
                 ],
                 outputs="merged_data",
-            ),
-            # node(
-            #     func=impute_interpolation,
-            #     inputs="merged_data",
-            #     outputs="imputed_data",
-            # ),
+            )
         ]
     )
