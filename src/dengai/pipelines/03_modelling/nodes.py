@@ -1,5 +1,7 @@
 import pandas as pd
-from lightgbm import LGBMRegressor
+from xgboost import XGBRegressor
+
+# from lightgbm import LGBMRegressor
 from datetime import datetime
 from sklearn.metrics import mean_absolute_error
 import csv
@@ -16,15 +18,8 @@ def train_model(X_train: pd.DataFrame, y_train: pd.DataFrame, params: dict):
     """
 
     # initialize the model
-    model = LGBMRegressor(
-        # learning_rate=params["learning_rate"],
-        # n_estimators=params["n_estimators"],
-        # num_leaves=params["num_leaves"],
-        # random_state=42,
-        # max_depth=params["max_depth"],
-        # verbose=-1,
-        n_jobs=-1,
-        forcedsplits_filename=params["split_file"],
+    model = XGBRegressor(
+        objective="reg:squarederror", n_estimators=100, learning_rate=0.1
     )
 
     # fit
