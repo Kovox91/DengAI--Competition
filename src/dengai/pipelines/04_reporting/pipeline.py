@@ -1,5 +1,5 @@
 from kedro.pipeline import node, Pipeline, pipeline  # noqa
-from .nodes import *
+from .nodes import make_predictions, create_submission
 
 
 def create_pipeline(**kwargs) -> Pipeline:

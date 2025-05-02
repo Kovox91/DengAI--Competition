@@ -1,5 +1,5 @@
 from kedro.pipeline import node, Pipeline, pipeline  # noqa
-from .nodes import *
+from .nodes import train_model, test_model, remerge
 
 
 def create_pipeline(**kwargs) -> Pipeline:
