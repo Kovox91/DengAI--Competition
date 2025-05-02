@@ -1,0 +1,90 @@
+# Here you can define all your datasets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+# raw data
+dengue_features_test:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/dengue_features_test.csv
+
+dengue_features_train:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/dengue_features_train.csv
+
+dengue_labels_train:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/dengue_labels_train.csv
+
+
+# intermediate data
+merged_data:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/merged_data.parquet
+
+cyclical_imputed:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/cyclical_imputed.parquet
+
+lag_features_added:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/lag_features_added.parquet
+
+imputed_data_mean:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/imputed_data_mean.parquet
+
+imputed_data_interpol:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/imputed_data_interpol.parquet
+
+numeric_data:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/numeric_data.parquet
+
+X_train:
+  type: pandas.ParquetDataset
+  filepath: data/03_model_input/X_train.parquet
+
+X_test:
+  type: pandas.ParquetDataset
+  filepath: data/03_model_input/X_test.parquet
+
+y_train:
+  type: pandas.CSVDataset
+  filepath: data/03_model_input/y_train.csv
+
+y_test:
+  type: pandas.CSVDataset
+  filepath: data/03_model_input/y_test.csv
+
+validation_data:
+  type: pandas.ParquetDataset
+  filepath: data/03_model_input/validation_data.parquet
+
+# models
+model:
+  type: pickle.PickleDataset
+  filepath: data/05_models/model.pkl
+
+final_model:
+  type: pickle.PickleDataset
+  filepath: data/05_models/final_model.pkl
+
+# comparative MAEs
+MAEs:
+  type: pandas.CSVDataset
+  filepath: data/07_reporting/MAEs.csv
+
+# predictions
+prediction:
+  type: pandas.CSVDataset
+  filepath: data/06_model_output/prediction.csv
+
+# submissions
+submission:
+  type: pandas.CSVDataset
+  filepath: data/07_reporting/submission
+  versioned: true
+  save_args:
+    index: False

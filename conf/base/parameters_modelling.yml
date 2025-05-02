@@ -1,0 +1,6 @@
+train_model:
+  learning_rate: 0.05
+  num_leaves: 64
+  max_depth: -1
+  n_estimators: 1000
+  split_file: data/01_raw/forced_splits.json
