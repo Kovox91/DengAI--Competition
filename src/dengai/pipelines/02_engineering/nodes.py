@@ -85,8 +85,8 @@ def add_favourable_conditions(df: pd.DataFrame, params: dict):
 
 def split_data(df: pd.DataFrame):
     """
-     This function accepts the complete data and split into validation and train and test dataset
-     df (pd.DataFrame): The input DataFrame.
+    This function accepts the complete data and split into validation and train and test dataset
+    df (pd.DataFrame): The input DataFrame.
     train_df, test_df,validation_df  (pd.DataFrame): The  output retrun the train ,test,validation dataframe.
 
     """
